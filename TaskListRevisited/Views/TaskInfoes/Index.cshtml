@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TaskListRevisited.Models.TaskInfo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Task List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Task Number
+            </th>
+            <th>
+                Desciption
+            </th>
+            <th>
+                Due Date
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Employee Responsible
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TaskNumber">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
